@@ -1,4 +1,3 @@
-// TableModel.jsx
 import { useGLTF } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 
@@ -28,7 +27,7 @@ export default function TableModel({ isMobile }) {
       ref={modelRef}
       object={scene}
       scale={isMobile ? [0.07, 0.07, 0.07] : [0.1, 0.1, 0.1]}
-      position={isMobile ? [0, 30, 0] : [0, 45, 0]}
+      position={isMobile ? [0, 50, 0] : [0, 45, 0]} // ⬅️ increased from 30 → 35 for mobile
       rotation={[Math.PI / 12, -Math.PI / 4, 0]}
     />
   );
