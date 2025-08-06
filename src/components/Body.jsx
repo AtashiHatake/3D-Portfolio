@@ -7,7 +7,7 @@ import { useMediaQuery } from "react-responsive";
 const Body = () => {
   const isMobile = useMediaQuery({ maxWidth: 640 }); // Tailwind's sm breakpoint
 
-  const cameraPosition = isMobile ? [0, 30, 400] : [0, 45, 250];
+  const cameraPosition = isMobile ? [0, 30, 110] : [0, 45, 250];
   const cameraFov = isMobile ? 60 : 45;
   const orbitTarget = [0, 45, 0];
 
