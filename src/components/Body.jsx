@@ -8,10 +8,10 @@ const Body = () => {
   const isMobile = useMediaQuery({ maxWidth: 640 });
   const canvasRef = useRef();
 
-  // Adjusted camera and target for smaller mobile model
-  const cameraPosition = isMobile ? [0, 25, 75] : [0, 50, 210];
+  // Adjusted ONLY desktop camera - mobile unchanged
+  const cameraPosition = isMobile ? [0, 25, 75] : [0, 60, 280]; // Moved desktop camera back and up
   const cameraFov = isMobile ? 60 : 45;
-  const orbitTarget = isMobile ? [0, -15, 0] : [0, -10, 0]; // Lower target for mobile
+  const orbitTarget = isMobile ? [0, -15, 0] : [0, -5, 0]; // Adjusted desktop target higher
 
   useEffect(() => {
     const handleWheel = (e) => {
@@ -91,7 +91,7 @@ const Body = () => {
         <div 
           className="absolute top-0 left-0 w-full"
           style={{ 
-            zIndex: 1000,
+            zIndex: 5,
             backgroundColor: "#161513",
             paddingBottom: "25px",
             height: isMobile ? "140px" : "160px"
