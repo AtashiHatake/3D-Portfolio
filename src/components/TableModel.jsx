@@ -1,52 +1,35 @@
-// Body.jsx
-import { Canvas } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
-import TableModel from "./TableModel";
-import { useMediaQuery } from "react-responsive";
+// TableModel.jsx
+import { useGLTF } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
-const Body = () => {
-  const isMobile = useMediaQuery({ maxWidth: 640 }); // Tailwind's sm breakpoint
+useGLTF.preload("/models/TableModel/scene.gltf");
 
-  const cameraPosition = isMobile ? [0, 20, 300] : [0, 30, 200];
-  const cameraFov = isMobile ? 60 : 45;
-  const orbitTarget = isMobile ? [0, 15, 0] : [0, 25, 0];
+export default function TableModel({ isMobile }) {
+  const { scene } = useGLTF("/models/TableModel/scene.gltf");
+  const modelRef = useRef();
+
+  useEffect(() => {
+    scene.traverse((child) => {
+      if (child.isMesh) {
+        child.castShadow = true;
+        child.receiveShadow = true;
+
+        if (child.material) {
+          child.material.metalness = 0.2;
+          child.material.roughness = 0.7;
+          child.material.envMapIntensity = 0.9;
+        }
+      }
+    });
+  }, [scene]);
 
   return (
-    <div
-      className="w-full pt-0"
-      style={{ backgroundColor: "#161513", height: "calc(100vh - 4rem)" }} // 4rem = ~Navbar height
-    >
-      <Canvas camera={{ position: cameraPosition, fov: cameraFov }} shadows>
-        <ambientLight intensity={0.4} />
-        <hemisphereLight
-          skyColor={"#ffffff"}
-          groundColor={"#888888"}
-          intensity={0.6}
-        />
-        <directionalLight
-          position={[2, 5, 2]}
-          intensity={1}
-          castShadow
-          shadow-mapSize-width={2048}
-          shadow-mapSize-height={2048}
-          shadow-bias={-0.0001}
-        />
-
-        <TableModel isMobile={isMobile} />
-
-        <OrbitControls
-          target={orbitTarget}
-          enableZoom={true}
-          enablePan={false}
-          enableRotate={true}
-          enableDamping={true}
-          dampingFactor={0.1}
-          maxPolarAngle={Math.PI / 2.2}
-          minPolarAngle={Math.PI / 3.2}
-        />
-      </Canvas>
-    </div>
+    <primitive
+      ref={modelRef}
+      object={scene}
+      scale={isMobile ? [0.07, 0.07, 0.07] : [0.1, 0.1, 0.1]}
+      position={isMobile ? [0, 30, 0] : [0, 45, 0]}
+      rotation={[Math.PI / 12, -Math.PI / 4, 0]}
+    />
   );
-};
-
-export default Body;
+}
