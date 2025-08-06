@@ -16,7 +16,7 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Links */}
-      <div className="hidden sm:flex gap-6 sm:gap-8 ml-auto">
+      <div className="hidden sm:flex gap-6 sm:gap-8 mr-32">
         {links.map((link) => (
           <a
             key={link}

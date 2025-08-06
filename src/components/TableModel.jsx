@@ -26,8 +26,8 @@ export default function TableModel({ isMobile }) {
     <primitive
       ref={modelRef}
       object={scene}
-      scale={isMobile ? [0.07, 0.07, 0.07] : [0.1, 0.1, 0.1]}
-      position={isMobile ? [0, 50, 0] : [0, 45, 0]} // ⬅️ increased from 30 → 35 for mobile
+      scale={isMobile ? [0.05, 0.05, 0.05] : [0.13, 0.13, 0.13]} // Much smaller mobile scale
+      position={isMobile ? [0, 3, 0] : [0, 9.8, 0]} // Lowered mobile position
       rotation={[Math.PI / 12, -Math.PI / 4, 0]}
     />
   );
