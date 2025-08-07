@@ -165,13 +165,13 @@ const Body = () => {
       <Parallax speed={-20}>
         {/* Paragraph section - Increased gap by 1-2 rems */}
         <div
-          className={`w-full flex justify-center bg-[#161513] ${
+          className={`w-full flex flex-col justify-center items-center bg-[#161513] ${
             isMobile ? "py-12 px-6" : "py-28 px-12" // Increased from py-8 to py-12 (mobile) and py-20 to py-28 (desktop)
           }`}
         >
           <p
-            className={`text-gray-500 text-lg font-medium text-justify leading-relaxed ${
-              isMobile ? "max-w-sm text-sm" : "max-w-xl"
+            className={`text-gray-500 text-lg font-medium text-center leading-relaxed ${
+              isMobile ? "max-w-sm text-sm" : "max-w-3xl"
             }`}
           >
             I build modern web applications with a focus on crafting solutions
@@ -185,21 +185,21 @@ const Body = () => {
             experiences that solve real-world problems and make a lasting
             impact.
           </p>
+
+          <div className="w-full flex justify-center bg-[#161513] py-12 px-4">
+            <a
+              href="https://drive.google.com/uc?export=download&id=1lyOGNECktsgjqFKhlQqEg-L_rB-EBlR_"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block"
+            >
+              <button className="bg-gradient-to-r from-[#F67E6F] to-[#9E37F9] text-white font-semibold px-8 py-3 rounded-lg hover:from-[#E55A4F] hover:to-[#8B2FE9] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
+                Download CV
+              </button>
+            </a>
+          </div>
         </div>
       </Parallax>
-
-      <div className="w-full flex justify-center bg-[#161513] py-4 px-4">
-        <a
-          href="https://drive.google.com/uc?export=download&id=1lyOGNECktsgjqFKhlQqEg-L_rB-EBlR_"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-block"
-        >
-          <button className="bg-gradient-to-r from-[#F67E6F] to-[#9E37F9] text-white font-semibold px-8 py-3 rounded-lg hover:from-[#E55A4F] hover:to-[#8B2FE9] transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-            Download CV
-          </button>
-        </a>
-      </div>
     </>
   );
 };
