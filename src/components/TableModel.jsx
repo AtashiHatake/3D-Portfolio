@@ -26,8 +26,8 @@ export default function TableModel({ isMobile }) {
     <primitive
       ref={modelRef}
       object={scene}
-      scale={isMobile ? [0.05, 0.05, 0.05] : [0.23, 0.23, 0.23]} 
-      position={isMobile ? [0, 3, 0] : [0, -50, 0]} 
+      scale={isMobile ? [0.07, 0.07, 0.07] : [0.23, 0.23, 0.23]} 
+      position={isMobile ? [0, -20, 0] : [0, -50, 0]} 
       rotation={[Math.PI / 12, -Math.PI / 4, 0]}
     />
   );

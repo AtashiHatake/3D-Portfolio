@@ -60,8 +60,18 @@ const Body = () => {
     <>
       <style>{scrollbarStyles}</style>
 
-      <div className="w-full min-h-screen bg-[#161513] relative overflow-hidden">
-        <div className="w-full flex justify-center items-start pt-16 pb-8">
+      {/* Hero section with more breathing room */}
+      <div
+        className={`w-full bg-[#161513] relative overflow-hidden ${
+          isMobile ? "h-auto" : "min-h-screen"
+        }`}
+      >
+        {/* Heading Section - Increased spacing */}
+        <div
+          className={`w-full flex justify-center items-start ${
+            isMobile ? "pt-8 pb-6" : "pt-20 pb-12"
+          }`}
+        >
           <h2
             className={`main-heading text-white font-bold text-center ${
               isMobile
@@ -90,20 +100,23 @@ const Body = () => {
           </h2>
         </div>
 
+        {/* 3D Canvas Section - Increased gap by 1.5 rems */}
         <div
           ref={canvasRef}
           className="w-full flex justify-center items-center"
           style={{
-            height: isMobile ? "400px" : "500px",
-            paddingLeft: isMobile ? "1rem" : "2rem",
-            paddingRight: isMobile ? "1rem" : "2rem",
+            height: isMobile ? "400px" : "600px",
+            paddingLeft: isMobile ? "1.5rem" : "3rem",
+            paddingRight: isMobile ? "1.5rem" : "3rem",
+            paddingTop: isMobile ? "3rem" : "4.5rem", // Increased by 1.5rem
+            paddingBottom: isMobile ? "3rem" : "4.5rem", // Increased by 1.5rem
           }}
         >
           <div
             className={`max-w-4xl ${isMobile ? "w-full" : "w-3/4"}`}
             style={{
               height: "100%",
-              minHeight: isMobile ? "180px" : "220px",
+              minHeight: isMobile ? "200px" : "300px",
               overflow: "hidden",
               position: "relative",
             }}
@@ -150,8 +163,17 @@ const Body = () => {
       </div>
 
       <Parallax speed={-20}>
-        <div className="w-full flex justify-center bg-[#161513] py-2 px-12">
-          <p className="text-gray-500 text-lg font-medium text-center max-w-xl leading-relaxed">
+        {/* Paragraph section - Increased gap by 1-2 rems */}
+        <div
+          className={`w-full flex justify-center bg-[#161513] ${
+            isMobile ? "py-12 px-6" : "py-28 px-12" // Increased from py-8 to py-12 (mobile) and py-20 to py-28 (desktop)
+          }`}
+        >
+          <p
+            className={`text-gray-500 text-lg font-medium text-justify leading-relaxed ${
+              isMobile ? "max-w-sm text-sm" : "max-w-xl"
+            }`}
+          >
             I build modern web applications with a focus on crafting solutions
             that make technology more accessible and impactful. My frontend
             expertise has contributed to successful hackathon projects,
@@ -178,11 +200,6 @@ const Body = () => {
           </button>
         </a>
       </div>
-
-      {/* Fast parallax <Parallax speed={20}></Parallax> */}
-      {/* Medium parallax <Parallax speed={-10}></Parallax> */}
-      {/* Slow parallax <Parallax speed={5}></Parallax> */}
-      {/* Very Slow parallax <Parallax speed={-30}></Parallax> */}
     </>
   );
 };
