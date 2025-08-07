@@ -8,10 +8,9 @@ const Body = () => {
   const isMobile = useMediaQuery({ maxWidth: 640 });
   const canvasRef = useRef();
 
-  // Adjusted ONLY desktop camera - mobile unchanged
-  const cameraPosition = isMobile ? [0, 25, 75] : [0, 60, 280]; // Moved desktop camera back and up
+  const cameraPosition = isMobile ? [0, 25, 75] : [0, 60, 280];
   const cameraFov = isMobile ? 60 : 45;
-  const orbitTarget = isMobile ? [0, -15, 0] : [0, -5, 0]; // Adjusted desktop target higher
+  const orbitTarget = isMobile ? [0, -15, 0] : [0, -5, 0];
 
   useEffect(() => {
     const handleWheel = (e) => {
@@ -20,10 +19,10 @@ const Body = () => {
 
     const canvasElement = canvasRef.current;
     if (canvasElement) {
-      canvasElement.addEventListener('wheel', handleWheel, { passive: false });
-      
+      canvasElement.addEventListener("wheel", handleWheel, { passive: false });
+
       return () => {
-        canvasElement.removeEventListener('wheel', handleWheel);
+        canvasElement.removeEventListener("wheel", handleWheel);
       };
     }
   }, []);
@@ -46,14 +45,12 @@ const Body = () => {
     ::-webkit-scrollbar-corner {
       background: transparent;
     }
-    
-    /* For Firefox */
+
     html {
       scrollbar-width: thin;
       scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
     }
 
-    /* ABSOLUTE CLIPPING SOLUTION */
     .three-canvas-container {
       clip-path: inset(0);
       -webkit-clip-path: inset(0);
@@ -61,7 +58,6 @@ const Body = () => {
       isolation: isolate;
     }
 
-    /* MOBILE TEXT IMPROVEMENTS */
     .main-heading {
       line-height: 1.2;
       word-spacing: 2px;
@@ -73,7 +69,7 @@ const Body = () => {
         letter-spacing: 0.3px;
         word-spacing: 1px;
       }
-      
+
       .gradient-text {
         display: inline-block;
         line-height: 1.2;
@@ -84,22 +80,32 @@ const Body = () => {
   return (
     <>
       <style>{scrollbarStyles}</style>
+
+      {/* Fixed height section for canvas and heading */}
       <div
         className="w-full"
-        style={{ backgroundColor: "#161513", height: "calc(100vh - 4rem)", position: "relative" }}
+        style={{
+          backgroundColor: "#161513",
+          height: "calc(100vh - 4rem)",
+          position: "relative",
+        }}
       >
-        <div 
+        <div
           className="absolute top-0 left-0 w-full"
-          style={{ 
+          style={{
             zIndex: 5,
             backgroundColor: "#161513",
             paddingBottom: "25px",
-            height: isMobile ? "140px" : "160px"
+            height: isMobile ? "140px" : "160px",
           }}
         >
-          <h2 className={`main-heading text-white font-bold text-center ${
-            isMobile ? 'text-lg mt-4 px-6 leading-relaxed' : 'text-3xl mt-12 leading-tight'
-          }`}>
+          <h2
+            className={`main-heading text-white font-bold text-center ${
+              isMobile
+                ? "text-lg mt-4 px-6 leading-relaxed"
+                : "text-3xl mt-12 leading-tight"
+            }`}
+          >
             {isMobile ? (
               <>
                 Atharva Bhosale, an engineering
@@ -112,8 +118,7 @@ const Body = () => {
               </>
             ) : (
               <>
-                Atharva Bhosale an engineering fresher and a{" "}
-                <br />
+                Atharva Bhosale an engineering fresher and a <br />
                 <span className="bg-gradient-to-r from-[#F67E6F] to-[#9E37F9] bg-clip-text text-transparent">
                   web developer
                 </span>
@@ -123,38 +128,38 @@ const Body = () => {
           </h2>
         </div>
 
-        <div 
+        <div
           ref={canvasRef}
           className="absolute w-full flex justify-center items-center three-canvas-container"
-          style={{ 
+          style={{
             top: isMobile ? "160px" : "180px",
             bottom: isMobile ? "50px" : "60px",
             left: "0",
             right: "0",
             zIndex: 1,
-            paddingLeft: isMobile ? '1rem' : '2rem',
-            paddingRight: isMobile ? '1rem' : '2rem',
-            paddingTop: isMobile ? '30px' : '40px',
-            paddingBottom: isMobile ? '0.5rem' : '0.5rem',
-            overflow: 'hidden'
+            paddingLeft: isMobile ? "1rem" : "2rem",
+            paddingRight: isMobile ? "1rem" : "2rem",
+            paddingTop: isMobile ? "30px" : "40px",
+            paddingBottom: isMobile ? "0.5rem" : "0.5rem",
+            overflow: "hidden",
           }}
         >
-          <div 
-            className={`max-w-4xl ${isMobile ? 'w-full' : 'w-3/4'}`}
-            style={{ 
-              height: '100%',
-              minHeight: isMobile ? '180px' : '220px',
-              overflow: 'hidden',
-              position: 'relative'
+          <div
+            className={`max-w-4xl ${isMobile ? "w-full" : "w-3/4"}`}
+            style={{
+              height: "100%",
+              minHeight: isMobile ? "180px" : "220px",
+              overflow: "hidden",
+              position: "relative",
             }}
           >
             <Canvas
               camera={{ position: cameraPosition, fov: cameraFov }}
               shadows
-              style={{ 
-                touchAction: 'none',
-                width: '100%',
-                height: '100%'
+              style={{
+                touchAction: "none",
+                width: "100%",
+                height: "100%",
               }}
             >
               <ambientLight intensity={0.4} />
@@ -187,6 +192,12 @@ const Body = () => {
             </Canvas>
           </div>
         </div>
+      </div>
+      <div className="w-full flex justify-center bg-[#161513] py-6 px-4">
+        <p className="text-white text-lg font-medium text-center max-w-xl leading-relaxed">
+          I am a front-end developer fresher and I am well versed in React.js,
+          Three.js, and Tailwind CSS. I can craft robust front-ends.
+        </p>
       </div>
     </>
   );
